@@ -1,0 +1,51 @@
+name: Toggle BPS
+
+on:
+  workflow_dispatch:  # Allows for manual trigger with inputs
+    inputs:
+      ticketNumber:
+        description: 'Ticket Number'
+        required: true
+        default: ''  # Default value
+        type: string
+      toggleMode:
+        description: 'Toggle Mode'
+        required: true
+        default: 'Status'  # Default value
+        type: choice
+        options:
+        - Stop
+        - Start
+        - Restart
+        - Status
+      restartWhat:
+        description: 'Toggle BPS Server or Service?'
+        required: true
+        default: 'SERVICE'  # Default value
+        type: choice
+        options:
+        - SERVICE
+        - SERVER
+      bpsName:
+        description: 'BPS Service/Server name'
+        required: true
+        default: ''  # Default value
+        type: string
+      dataCenter:
+        description: 'Data Center'
+        required: true
+        default: 'US'  # Default value
+        type: choice
+        options:
+        - US
+        - EU
+
+jobs:
+  toggle-bps:
+    runs-on: windows-latest
+    if: ${{ github.event.inputs.restartWhat == 'SERVER' }}
+    steps:
+      - name: ${{ github.event.inputs.toggleMode }} BPS ${{ github.event.inputs.bpsName }}
+        run: |
+          $restartWhat = '${{ github.event.inputs.restartWhat }}'
+          Write-Host "Executing a restart to: $restartWhat"
