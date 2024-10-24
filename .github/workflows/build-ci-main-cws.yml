@@ -1,0 +1,15 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    uses: dlarang/it-bamboo-pipeline/.github/templates/build-cws.yml@main
+    with:
+      branchName: master
+      dbTarget: rc
+      msBuildConfig: Release
+      targetOption: 'Compile,PrecompileWeb,RunTests'

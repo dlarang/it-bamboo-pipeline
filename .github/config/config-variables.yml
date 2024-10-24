@@ -1,0 +1,10 @@
+variables:
+  VERSION_DLL: "Beeline.Core.dll"
+  SERVICE_ACCOUNT: "zz_BambooSVC_zz"
+  INTERNALTOOLS_USERNAME: "InternalTools_svc"
+  BUILDOPS_EMAIL: "BuildOps@beeline.com"
+  BUILDOPS_MSTEAMS_EMAIL: "5a88bdd3.beelineco.onmicrosoft.com@amer.teams.ms"
+  US_SMTP_SERVER: "smtp.jax.beeline.com"
+  EU_SMTP_SERVER: "smtp.fra.beeline.com"
+  JIRA_MAX_RESULT: "999"
+  JIRA_URL: "https://jira.beeline.com"

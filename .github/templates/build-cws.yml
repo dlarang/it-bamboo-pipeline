@@ -1,0 +1,59 @@
+name: Build CWS
+
+on:
+  workflow_call:
+    inputs:
+      branchName:
+        description: 'Branch Name'
+        required: true
+        default: 'master'
+        type: string
+      dbTarget:
+        description: 'DB Target'
+        required: true
+        default: 'RC'
+        type: string
+      msBuildConfig:
+        description: 'Release'
+        required: true
+        default: 'RC'
+        type: string
+      targetOption:
+        description: 'Compile,PrecompileWeb,RunTests'
+        required: true
+        default: 'RC'
+        type: string
+      cleanCheckout:
+        description: 'DB Target'
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  Build-Artifact:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout CWS
+      shell: pwsh
+      run: |
+        Write-Output "Checkout to CWS complete"
+    - name: Test DB Upgrade
+      shell: pwsh
+      run: |
+        Write-Output "Test DB Upgrade complete"
+    - name: Update Code Version
+      shell: pwsh
+      run: |
+        Write-Output "Update Code Version complete"
+    - name: Build
+      shell: pwsh
+      run: |
+        Write-Output "Build complete"
+    - name: Unit Testing
+      shell: pwsh
+      run: |
+        Write-Output "Unit Testing complete"
+    - name: Archived File
+      shell: pwsh
+      run: |
+        Write-Output "Archived File complete"
