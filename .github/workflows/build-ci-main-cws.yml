@@ -13,3 +13,4 @@ jobs:
       dbTarget: rc
       msBuildConfig: Release
       targetOption: 'Compile,PrecompileWeb,RunTests'
+      cleanCheckout: true
