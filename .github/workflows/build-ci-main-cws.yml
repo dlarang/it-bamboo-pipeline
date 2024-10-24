@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    uses: dlarang/it-bamboo-pipeline/.github/workflows/templates/build-cws.yml@main
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-cws.yml@main
     with:
       branchName: master
       dbTarget: rc
