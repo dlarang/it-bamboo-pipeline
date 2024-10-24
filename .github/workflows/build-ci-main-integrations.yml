@@ -1,0 +1,13 @@
+name: Build CI Main Integrations
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-Main-Integrations:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-integrations.yml@main
+    with:
+      branchName: master
+      cleanCheckout: true

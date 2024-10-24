@@ -1,0 +1,13 @@
+name: Build CI Main Import Api
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-Main-ImportApi:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-importapi.yml@main
+    with:
+      branchName: master
+      cleanCheckout: true

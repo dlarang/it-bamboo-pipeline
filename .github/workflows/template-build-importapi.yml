@@ -1,0 +1,32 @@
+name: Build Import Api
+
+on:
+  workflow_call:
+    inputs:
+      branchName:
+        description: 'Branch Name'
+        required: true
+        default: 'master'
+        type: string
+      cleanCheckout:
+        description: 'cleanCheckout'
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  Build-Artifact:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout Import Api
+      shell: pwsh
+      run: |
+        Write-Output "Checkout to Import Api complete"
+    - name: Build
+      shell: pwsh
+      run: |
+        Write-Output "Build complete"
+    - name: Archived File
+      shell: pwsh
+      run: |
+        Write-Output "Archived File complete"

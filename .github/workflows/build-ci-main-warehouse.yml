@@ -1,0 +1,13 @@
+name: Build CI Main Warehouse
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-Main-Warehouse:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-interview.yml@main
+    with:
+      branchName: master
+      cleanCheckout: true

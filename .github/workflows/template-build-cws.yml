@@ -19,12 +19,12 @@ on:
         default: 'RC'
         type: string
       targetOption:
-        description: 'Compile,PrecompileWeb,RunTests'
+        description: 'Target Option'
         required: true
-        default: 'RC'
+        default: 'Compile,PrecompileWeb,RunTests'
         type: string
       cleanCheckout:
-        description: 'DB Target'
+        description: 'cleanCheckout'
         required: true
         default: true
         type: boolean

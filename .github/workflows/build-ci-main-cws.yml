@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  CI-Main-CWS:
     uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-cws.yml@main
     with:
       branchName: master

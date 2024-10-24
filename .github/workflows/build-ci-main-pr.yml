@@ -1,0 +1,13 @@
+name: Build CI Main PR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-Main-PR:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-pr.yml@main
+    with:
+      branchName: master
+      cleanCheckout: true

@@ -1,0 +1,13 @@
+name: Build CI Main Interview
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-Main-Interview:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-interview.yml@main
+    with:
+      branchName: master
+      cleanCheckout: true
