@@ -1,4 +1,4 @@
-name: Build Warehouse
+name: Build Warehouse - Template
 
 on:
   workflow_call:
