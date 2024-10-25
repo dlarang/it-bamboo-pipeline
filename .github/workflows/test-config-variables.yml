@@ -1,4 +1,4 @@
-name: Test Variables
+name: Test Repo Config Variables
 
 on:
   workflow_dispatch: # Allows manual trigger
