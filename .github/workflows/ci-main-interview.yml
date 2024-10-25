@@ -1,4 +1,4 @@
-name: CI-Main-Interview
+name: CI Main Interview
 
 on:
   push:

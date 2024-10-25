@@ -1,4 +1,4 @@
-name: CI-Main-PR
+name: CI Main PR
 
 on:
   push:

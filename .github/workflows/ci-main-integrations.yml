@@ -1,4 +1,4 @@
-name: CI-Main-Integrations
+name: CI Main Integrations
 
 on:
   push:

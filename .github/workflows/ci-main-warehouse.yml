@@ -1,4 +1,4 @@
-name: CI-Main-Warehouse
+name: CI Main Warehouse
 
 on:
   push:

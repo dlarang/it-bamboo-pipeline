@@ -1,4 +1,4 @@
-name: CI-Main-ImportApi
+name: CI Main ImportApi
 
 on:
   push:
