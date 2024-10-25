@@ -1,4 +1,4 @@
-name: CI Main CWS
+name: Build Main CWS
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  Build-Main-CWS:
+  CI-Main-CWS:
     uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-cws.yml@main
     with:
       branchName: master
