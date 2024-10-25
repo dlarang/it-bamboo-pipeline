@@ -1,4 +1,4 @@
-name: Build CWS - Template
+name: Template - Build CWS
 
 on:
   workflow_call:

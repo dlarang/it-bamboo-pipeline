@@ -1,4 +1,4 @@
-name: Build PR - Template
+name: Template - Build PR
 
 on:
   workflow_call:

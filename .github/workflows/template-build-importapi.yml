@@ -1,4 +1,4 @@
-name: Build Import Api - Template
+name: Template - Build Import Api
 
 on:
   workflow_call:

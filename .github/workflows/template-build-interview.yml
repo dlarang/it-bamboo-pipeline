@@ -1,4 +1,4 @@
-name: Build Interview - Template
+name: Template - Build Interview
 
 on:
   workflow_call:

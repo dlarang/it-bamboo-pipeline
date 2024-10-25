@@ -1,4 +1,4 @@
-name: Build Integrations - Template
+name: Template - Build Integrations
 
 on:
   workflow_call:
