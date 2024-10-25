@@ -1,4 +1,4 @@
-name: Build CI Main PR
+name: CI-RC-PR
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  CI-Main-PR:
+  CI-RC-PR:
     uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-pr.yml@main
     with:
-      branchName: master
+      branchName: releaseCandidate
       cleanCheckout: true

@@ -1,4 +1,4 @@
-name: Build CI RC Import Api
+name: CI-Main-ImportApi
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  CI-RC-ImportApi:
+  CI-Main-ImportApi:
     uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-importapi.yml@main
     with:
-      branchName: releaseCandidate
+      branchName: master
       cleanCheckout: true

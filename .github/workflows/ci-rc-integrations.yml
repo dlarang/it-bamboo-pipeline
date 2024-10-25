@@ -1,4 +1,4 @@
-name: Build CI RC Integrations
+name: CI-RC-Integrations
 
 on:
   push:

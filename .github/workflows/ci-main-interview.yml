@@ -1,4 +1,4 @@
-name: Build CI Main Warehouse
+name: CI-Main-Interview
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  CI-Main-Warehouse:
+  CI-Main-Interview:
     uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-interview.yml@main
     with:
       branchName: master

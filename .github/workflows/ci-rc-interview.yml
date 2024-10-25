@@ -1,4 +1,4 @@
-name: Build CI RC Interview
+name: CI-RC-Interview
 
 on:
   push:

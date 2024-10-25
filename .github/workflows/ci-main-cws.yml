@@ -1,4 +1,4 @@
-name: Build CI Main CWS
+name: CI-Main-CWS
 
 on:
   push:
