@@ -10,16 +10,10 @@ env:
 jobs:
   Test-Variables:
     runs-on: windows-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
     - name: Hotfix Days
       shell: pwsh
       run: |
         Write-Output "Hotfix Days: $env:HOTFIX_DAYS"
-
     - name: Release Prod Build Day
       shell: pwsh
       run: |
