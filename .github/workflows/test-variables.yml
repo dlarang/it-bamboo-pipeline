@@ -4,8 +4,8 @@ on:
   workflow_dispatch: # Allows manual trigger
 
 env:
-  HOTFIX_DAYS: 5
-  RELEASE_PROD_BUILD_DAY: "Friday"
+  HOTFIX_DAYS: ${{ variables.HOTFIX_DAYS }}
+  RELEASE_PROD_BUILD_DAY: ${{ variables.RELEASE_PROD_BUILD_DAY }}
 
 jobs:
   Test-Variables:
