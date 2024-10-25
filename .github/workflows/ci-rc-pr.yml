@@ -1,4 +1,4 @@
-name: CI-RC-PR
+name: CI RC PR
 
 on:
   push:

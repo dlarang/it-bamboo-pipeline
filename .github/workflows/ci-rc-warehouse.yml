@@ -1,4 +1,4 @@
-name: CI-RC-Warehouse
+name: CI RC Warehouse
 
 on:
   push:
