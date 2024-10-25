@@ -1,3 +1,4 @@
+name: Build CWS
 
 on:
   workflow_call:
