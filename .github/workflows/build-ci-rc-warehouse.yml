@@ -1,0 +1,13 @@
+name: Build CI RC Warehouse
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-RC-Warehouse:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-interview.yml@main
+    with:
+      branchName: releaseCandidate
+      cleanCheckout: true

@@ -1,0 +1,16 @@
+name: Build CI RC CWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-RC-CWS:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-cws.yml@main
+    with:
+      branchName: releaseCandidate
+      dbTarget: rc
+      msBuildConfig: Release
+      targetOption: 'Compile,PrecompileWeb,RunTests'
+      cleanCheckout: true
