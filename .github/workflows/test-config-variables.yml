@@ -6,22 +6,24 @@ on:
 jobs:
   Test-Config-Variables:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
     - name: Install yq using Snap
       run: |
         sudo apt-get update
         sudo apt-get install -y snapd
         sudo snap install yq
+
     - name: Read config variables
       shell: pwsh
       run: |
-        $config = yq e '.variables' config-variables.yml
-        $version_dll = yq e '.variables.VERSION_DLL' config-variables.yml
-        $service_account = yq e '.variables.SERVICE_ACCOUNT' config-variables.yml
-        $internaltools_username = yq e '.variables.INTERNALTOOLS_USERNAME' config-variables.yml
-
+        $configFile = ".github/config/config-variables.yml"
+        $version_dll = yq e '.variables.VERSION_DLL' $configFile
+        $service_account = yq e '.variables.SERVICE_ACCOUNT' $configFile
+        $internaltools_username = yq e '.variables.INTERNALTOOLS_USERNAME' $configFile
         Write-Host "Version DLL: $version_dll"
         Write-Host "Service Account: $service_account"
         Write-Host "InternalTools Username: $internaltools_username"
