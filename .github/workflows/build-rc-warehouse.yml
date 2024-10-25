@@ -1,0 +1,14 @@
+name: Build RC Warehouse
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: #Allows manual trigger
+
+jobs:
+  Build-RC-Warehouse:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-interview.yml@main
+    with:
+      branchName: releaseCandidate
+      cleanCheckout: true

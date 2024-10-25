@@ -1,0 +1,14 @@
+name: Build RC Integrations
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: #Allows manual trigger
+
+jobs:
+  Build-RC-Integrations:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-integrations.yml@main
+    with:
+      branchName: releaseCandidate
+      cleanCheckout: true

@@ -1,0 +1,14 @@
+name: CI RC ImportApi
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: #Allows manual trigger
+
+jobs:
+  CI-RC-ImportApi:
+    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-importapi.yml@main
+    with:
+      branchName: releaseCandidate
+      cleanCheckout: true

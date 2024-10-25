@@ -1,0 +1,26 @@
+name: Test Variables
+
+on:
+  workflow_dispatch: # Allows manual trigger
+
+env:
+  HOTFIX_DAYS: 5
+  RELEASE_PROD_BUILD_DAY: "Friday"
+
+jobs:
+  Test-Variables:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Hotfix Days
+      shell: pwsh
+      run: |
+        Write-Output "Hotfix Days: $env:HOTFIX_DAYS"
+
+    - name: Release Prod Build Day
+      shell: pwsh
+      run: |
+        Write-Output "Release Prod Build Day: $env:RELEASE_PROD_BUILD_DAY"
