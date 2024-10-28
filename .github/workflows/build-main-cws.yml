@@ -27,4 +27,10 @@ jobs:
       run: dir .github/build
     
     - name: Build
-      uses: ./.github/build
+      uses: ./.github/templates/build/cws
+      with:
+        branchName: master
+        dbTarget: rc
+        msBuildConfig: Release
+        targetOption: 'Compile,PrecompileWeb,RunTests'
+        cleanCheckout: true

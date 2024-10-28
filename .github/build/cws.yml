@@ -1,9 +1,0 @@
-name: Build CWS
-description: 'Build CWS'
-runs:
-  using: 'composite'
-  steps:
-    - name: Checkout CWS
-      shell: pwsh
-      run: |
-        Write-Output "Checkout to CWS complete"
