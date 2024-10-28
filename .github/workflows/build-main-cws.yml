@@ -7,16 +7,20 @@ on:
   workflow_dispatch: # Allows manual trigger
 
 jobs:
-  CI-Main-CWS:
+  Checkout:
     runs-on: windows-latest
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2    
-    - name: Build
-      uses: ./.github/templates/build/cws
-      with:
-        branchName: master
-        dbTarget: rc
-        msBuildConfig: Release
-        targetOption: 'Compile,PrecompileWeb,RunTests'
-        cleanCheckout: true
+    - name: Check out code
+      uses: actions/checkout@v2
+  Build:
+    needs: Checkout
+    runs-on: windows-latest
+    steps:
+      - name: Build
+        uses: ./.github/templates/build/cws
+        with:
+          branchName: master
+          dbTarget: rc
+          msBuildConfig: Release
+          targetOption: 'Compile,PrecompileWeb,RunTests'
+          cleanCheckout: true
