@@ -24,7 +24,7 @@ jobs:
       run: ls 
     
     - name: List files
-      run: dir .github/reusable-steps
+      run: dir .github/actions
     
     - name: Build
       uses: ./.github/actions
