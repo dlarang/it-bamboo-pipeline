@@ -10,8 +10,10 @@ jobs:
   CI-Main-CWS:
     runs-on: windows-latest
     steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
     - name: Build
-      uses: dlarang/it-bamboo-pipeline/.github/actions/actions.yml@main
+      uses: ./.github/actions/action.yml@main
       with:
         branchName: master
         dbTarget: rc
