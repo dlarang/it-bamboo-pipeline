@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build
-      uses: it-bamboo-pipeline/.github/reusable-steps/build-cws.yml@main
+      uses: dlarang/it-bamboo-pipeline/.github/reusable-steps/build-cws.yml@main
       with:
         branchName: master
         dbTarget: rc
