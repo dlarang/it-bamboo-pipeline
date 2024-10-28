@@ -25,3 +25,6 @@ jobs:
     
     - name: List files
       run: dir .github/reusable-steps
+    
+    - name: Build
+      uses: ./.github/reusable-steps/action.yml
