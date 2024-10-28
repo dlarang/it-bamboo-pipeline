@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Build
-      uses: dlarang/it-bamboo-pipeline/.github/reusable-steps/action.yml@main
+      uses: dlarang/it-bamboo-pipeline/.github/actions/actions.yml@main
       with:
         branchName: master
         dbTarget: rc
