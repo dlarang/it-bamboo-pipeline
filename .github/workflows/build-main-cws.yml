@@ -21,10 +21,7 @@ jobs:
       run: pwd
 
     - name: List files
-      run: ls 
-    
-    - name: List files
-      run: dir .github/build
+      run: ls
     
     - name: Build
       uses: ./.github/templates/build/cws
