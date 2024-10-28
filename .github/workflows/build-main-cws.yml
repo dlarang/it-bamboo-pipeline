@@ -13,7 +13,7 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v2
     - name: Build
-      uses: ./.github/actions/action.yml
+      uses: dlarang/it-bamboo-pipeline/.github/actions/action.yml
       with:
         branchName: master
         dbTarget: rc
