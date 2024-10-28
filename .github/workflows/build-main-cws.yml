@@ -8,6 +8,7 @@ on:
 
 jobs:
   CI-Main-CWS:
+    runs-on: windows-latest
     steps:
     - name: Build
       uses: dlarang/it-bamboo-pipeline/.github/reusable-steps/build-cws.yml@main
