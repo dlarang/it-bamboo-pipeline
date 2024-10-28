@@ -22,3 +22,6 @@ jobs:
 
     - name: List files
       run: ls 
+    
+    - name: List files
+      run: dir .github/reusable-steps
