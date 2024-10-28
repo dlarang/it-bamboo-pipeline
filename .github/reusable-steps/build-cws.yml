@@ -1,33 +1,6 @@
 name: Build CWS
 description: 'Build CWS'
 
-inputs:
-  branchName:
-    description: 'Branch Name'
-    required: true
-    default: 'master'
-    type: string
-  dbTarget:
-    description: 'DB Target'
-    required: true
-    default: 'RC'
-    type: string
-  msBuildConfig:
-    description: 'Release'
-    required: true
-    default: 'RC'
-    type: string
-  targetOption:
-    description: 'Target Option'
-    required: true
-    default: 'Compile,PrecompileWeb,RunTests'
-    type: string
-  cleanCheckout:
-    description: 'cleanCheckout'
-    required: true
-    default: true
-    type: boolean
-
 runs:
   using: 'composite'
   steps:
