@@ -24,7 +24,7 @@ jobs:
       run: ls 
     
     - name: List files
-      run: dir .github/actions
+      run: dir .github/build
     
     - name: Build
-      uses: ./.github/actions
+      uses: ./.github/build
