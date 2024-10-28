@@ -31,6 +31,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Check out code
+      uses: actions/checkout@v2
     - name: Checkout CWS
       shell: pwsh
       run: |
