@@ -8,7 +8,12 @@ on:
 
 jobs:
   Build-Main-Integrations:
-    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-integrations.yml@main
-    with:
-      branchName: master
-      cleanCheckout: true
+    runs-on: windows-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2    
+    - name: Build
+      uses: ./.github/templates/build/integrations
+      with:
+        branchName: master
+        cleanCheckout: true

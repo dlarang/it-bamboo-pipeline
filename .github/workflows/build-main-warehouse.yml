@@ -8,7 +8,12 @@ on:
 
 jobs:
   Build-Main-Warehouse:
-    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-interview.yml@main
-    with:
-      branchName: master
-      cleanCheckout: true
+    runs-on: windows-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2    
+    - name: Build
+      uses: ./.github/templates/build/warehouse
+      with:
+        branchName: master
+        cleanCheckout: true

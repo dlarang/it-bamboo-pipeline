@@ -1,0 +1,38 @@
+name: Build Warehouse
+description: 'Build Warehouse'
+
+inputs:
+  branchName:
+    description: 'Branch Name'
+    required: true
+    default: 'master'
+    type: string
+  cleanCheckout:
+    description: 'cleanCheckout'
+    required: true
+    default: true
+    type: boolean
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout CWS
+      shell: pwsh
+      run: |
+        Write-Output "Checkout to Warehouse complete"
+    - name: Create Artifact Folder
+      shell: pwsh
+      run: |
+        Write-Output "Create Artifact Folder complete"
+    - name: Copy DBScripts to WarehouseDB folder
+      shell: pwsh
+      run: |
+        Write-Output "Copy DBScripts to WarehouseDB folder complete"
+    - name: Copy FinDW warehouse changes to WarehouseDB folder
+      shell: pwsh
+      run: |
+        Write-Output "Copy FinDW warehouse changes to WarehouseDB folder complete"
+    - name: Archived File
+      shell: pwsh
+      run: |
+        Write-Output "Archived File complete"
