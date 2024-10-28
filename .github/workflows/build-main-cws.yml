@@ -8,10 +8,12 @@ on:
 
 jobs:
   CI-Main-CWS:
-    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-cws.yml@main
-    with:
-      branchName: master
-      dbTarget: rc
-      msBuildConfig: Release
-      targetOption: 'Compile,PrecompileWeb,RunTests'
-      cleanCheckout: true
+    steps:
+    - name: Build
+      uses: dlarang/it-bamboo-pipeline/.github/reusable-steps/build-cws.yml@main
+      with:
+        branchName: master
+        dbTarget: rc
+        msBuildConfig: Release
+        targetOption: 'Compile,PrecompileWeb,RunTests'
+        cleanCheckout: true
