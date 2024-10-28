@@ -9,20 +9,7 @@ on:
 jobs:
   CI-Main-CWS:
     runs-on: windows-latest
-
-    steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
-
-    - name: List files
-      run: ls -R
-    
-    - name: Print working directory
-      run: pwd
-
-    - name: List files
-      run: ls
-    
+    steps:    
     - name: Build
       uses: ./.github/templates/build/cws
       with:
