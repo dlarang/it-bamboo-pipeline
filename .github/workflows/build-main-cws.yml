@@ -9,4 +9,16 @@ on:
 jobs:
   CI-Main-CWS:
     runs-on: windows-latest
-    uses: dlarang/it-bamboo-pipeline/.github/reusable-steps/build-cws.yml@main
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Build
+      uses: ./.github/reusable-steps/build.yml
+      with:
+        branchName: master
+        dbTarget: rc
+        msBuildConfig: Release
+        targetOption: 'Compile,PrecompileWeb,RunTests'
+        cleanCheckout: true
