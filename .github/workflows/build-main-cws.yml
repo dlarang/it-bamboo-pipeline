@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # Allows manual trigger
 
 jobs:
-  Checkout:
+  Build:
     runs-on: windows-latest
     steps:
     - name: Check out code
