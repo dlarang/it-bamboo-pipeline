@@ -26,7 +26,7 @@ jobs:
         with:
           name: source-code
       - name: Build
-        uses: ./.github/templates/build/cws
+        uses: ./.github/templates/build/cws/action.yml
         with:
           branchName: master
           dbTarget: rc
