@@ -12,27 +12,11 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-    - name: Upload code as artifact
-      uses: actions/upload-artifact@v3
+    - name: Build
+      uses: ./.github/templates/build/cws
       with:
-        name: workspace
-        path: ./
-  Build:
-    needs: Checkout
-    runs-on: windows-latest
-    steps:
-      - name: Download source code
-        uses: actions/download-artifact@v3
-        with:
-          name: workspace
-      - name: List files in the working directory (Bash)
-        run: |
-          ls -R
-      - name: Build
-        uses: ./.github/templates/build/cws
-        with:
-          branchName: master
-          dbTarget: rc
-          msBuildConfig: Release
-          targetOption: 'Compile,PrecompileWeb,RunTests'
-          cleanCheckout: true
+        branchName: master
+        dbTarget: rc
+        msBuildConfig: Release
+        targetOption: 'Compile,PrecompileWeb,RunTests'
+        cleanCheckout: true
