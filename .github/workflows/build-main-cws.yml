@@ -25,6 +25,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: workspace
+      - name: List files in the working directory (Bash)
+        run: |
+          ls -R
       - name: Build
         uses: ./.github/templates/build/cws
         with:
