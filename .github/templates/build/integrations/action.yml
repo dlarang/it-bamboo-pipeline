@@ -16,6 +16,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Parameters
+      shell: pwsh
+      run: |
+        Write-Output "Using the following parameters:"
+        Write-Output "BranchName: ${{ inputs.branchName }}"
+        Write-Output "CleanCheckOut: ${{ inputs.cleanCheckout }}"
     - name: Checkout Integrations
       shell: pwsh
       run: |

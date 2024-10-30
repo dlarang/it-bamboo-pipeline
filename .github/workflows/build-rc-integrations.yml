@@ -7,8 +7,13 @@ on:
   workflow_dispatch: #Allows manual trigger
 
 jobs:
-  Build-RC-Integrations:
-    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-integrations.yml@main
-    with:
-      branchName: releaseCandidate
-      cleanCheckout: true
+  Build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2    
+    - name: Build
+      uses: ./.github/templates/build/integrations
+      with:
+        branchName: releaseCandidate
+        cleanCheckout: true

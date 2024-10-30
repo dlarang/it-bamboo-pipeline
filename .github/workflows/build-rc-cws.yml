@@ -7,11 +7,16 @@ on:
   workflow_dispatch: #Allows manual trigger
 
 jobs:
-  Build-RC-CWS:
-    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-cws.yml@main
-    with:
-      branchName: releaseCandidate
-      dbTarget: rc
-      msBuildConfig: Release
-      targetOption: 'Compile,PrecompileWeb,RunTests'
-      cleanCheckout: true
+  Build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build
+      uses: ./.github/templates/build/cws
+      with:
+        branchName: releaseCandidate
+        dbTarget: rc
+        msBuildConfig: Release
+        targetOption: 'Compile,PrecompileWeb,RunTests'
+        cleanCheckout: true

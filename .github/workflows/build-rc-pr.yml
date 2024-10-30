@@ -7,8 +7,13 @@ on:
   workflow_dispatch: #Allows manual trigger
 
 jobs:
-  Build-RC-PR:
-    uses: dlarang/it-bamboo-pipeline/.github/workflows/template-build-pr.yml@main
-    with:
-      branchName: releaseCandidate
-      cleanCheckout: true
+  Build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2    
+    - name: Build
+      uses: ./.github/templates/build/pr
+      with:
+        branchName: releaseCandidate
+        cleanCheckout: true

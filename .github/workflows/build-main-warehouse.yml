@@ -7,10 +7,10 @@ on:
   workflow_dispatch: #Allows manual trigger
 
 jobs:
-  Build-Main-Warehouse:
+  Build:
     runs-on: windows-latest
     steps:
-    - name: Check out repository
+    - name: Checkout
       uses: actions/checkout@v2    
     - name: Build
       uses: ./.github/templates/build/warehouse

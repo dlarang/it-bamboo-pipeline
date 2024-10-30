@@ -10,7 +10,7 @@ jobs:
   Build:
     runs-on: windows-latest
     steps:
-    - name: Check out code
+    - name: Checkout
       uses: actions/checkout@v2
     - name: Build
       uses: ./.github/templates/build/cws

@@ -31,6 +31,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Parameters
+      shell: pwsh
+      run: |
+        Write-Output "Using the following parameters:"
+        Write-Output "BranchName: ${{ inputs.branchName }}"
+        Write-Output "DBTarget: ${{ inputs.dbTarget }}"
+        Write-Output "MSBuildConfig: ${{ inputs.msBuildConfig }}"
+        Write-Output "TargetOption: ${{ inputs.targetOption }}"
+        Write-Output "CleanCheckOut: ${{ inputs.cleanCheckout }}"
     - name: Checkout CWS
       shell: pwsh
       run: |
