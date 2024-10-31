@@ -2,12 +2,12 @@ name: Test Variables
 
 on:
   workflow_dispatch: # Allows manual trigger
-  inputs:
-    branchName:
-      description: 'Branch Name'
-      required: true
-      default: 'master'
-      type: string
+    inputs:
+      branchName:
+        description: 'Branch Name'
+        required: true
+        default: 'master'
+        type: string
 
 env:
   HOTFIX_DAYS: ${{ vars.HOTFIX_DAYS }}
