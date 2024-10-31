@@ -1,6 +1,5 @@
 name: Validate Version
 description: 'Validate Version'
-
 inputs:
   environmentProperties:
     description: 'Environment Properties'
@@ -10,22 +9,27 @@ runs:
   using: 'composite'
   steps:
     - name: Parse Environment Properties
-      id: parse 
+      id: parse
       shell: pwsh
       run: |
         $json = '${{ inputs.environmentProperties }}' | ConvertFrom-Json
-        Write-Output "::set-output name=versionToUse::$json.versionToUse"
-        Write-Output "::set-output name=sourceZIPPath::$json.sourceZIPPath"
-        Write-Output "::set-output name=extractFolder::$json.extractFolder"
+        $versionToUse = $json.versionToUse
+        $sourceZIPPath = $json.sourceZIPPath
+        $extractFolder = $json.extractFolder
+
+        Write-Output "::set-output name=versionToUse::$versionToUse"
+        Write-Output "::set-output name=sourceZIPPath::$sourceZIPPath"
+        Write-Output "::set-output name=extractFolder::$extractFolder"
+
     - name: Validate Version
+      if: ${{ steps.parse.outputs.versionToUse != '' }}
       shell: pwsh
       run: |
         $sourceZipPath = "${{ steps.parse.outputs.sourceZIPPath }}"
         $extractFolder = "${{ steps.parse.outputs.extractFolder }}"
         $artifactLocation = "$sourceZipPath\CWS.zip"
         $extractDestination = "$sourceZipPath\$extractFolder"
-
+        
         Write-Host "Validating Version using the needed parameters:"
         Write-Host "ArtifactLocation: $artifactLocation"
         Write-Host "ExtractDestination: $extractDestination"
-        Write-Host "DestinationVersion: "
