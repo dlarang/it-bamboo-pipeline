@@ -17,7 +17,7 @@ on:
         type: number
       environmentProperties:
         description: 'Environment Properties'
-        type: object
+        type: string
       smtpServer:
         description: 'SMTP Server'
         default: 'smtp.jax.beeline.com'
