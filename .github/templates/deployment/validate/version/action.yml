@@ -1,0 +1,26 @@
+name: Validate Version
+description: 'Validate Version'
+
+inputs:
+  environmentProperties:
+    description: 'Environment Properties'
+    type: object
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Parse Environment Properties
+      id: parse 
+      shell: pwsh
+      run: |
+        $json = '${{ inputs.environmentProperties }}' | ConvertFrom-Json
+        Write-Output "::set-output name=versionToUse::$json.versionToUse"
+        Write-Output "::set-output name=sourceZIPPath::$json.sourceZIPPath"
+        Write-Output "::set-output name=extractFolder::$json.extractFolder"
+    - name: Validate Version
+      shell: pwsh
+      run: |
+        Write-Host "Validating Version using the needed parameters:"
+        Write-Host "ArtifactLocation: ${{ steps.parse.outputs.sourceZIPPath }}\CWS.zip"
+        Write-Host "ExtractDestination: ${{ steps.parse.outputs.sourceZIPPath }}\${{ steps.parse.outputs.extractFolder }}"
+        Write-Host "DestinationVersion: "

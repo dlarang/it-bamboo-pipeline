@@ -1,0 +1,41 @@
+name: Deploy US QA Regression
+
+on:
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deployment.yml
+    with:
+      environmentProperties: |
+        {
+          "versionToUse": "D:\\AzureDevOps-Store\\dynamic\\azcandidate.txt",
+          "environmentName": "QARegression",
+          "validatorProperties": {
+            "codeVersion": "Yes",
+            "databaseVersion": "Yes",
+            "siteHealth": "Yes",
+            "databaseUpgrade": "Yes",
+            "emailApproval": "No",
+            "utilityProcess": "No",
+            "dwValidation": "Yes"
+          },
+          "notificationSetting": {
+            "release": {
+              "environment": "QA Regression (US and EU)",
+              "jiraQuery": "D:\\AzureDevOps-Store\\dynamic\\jqlcandidate.txt",
+              "duration": "2 hours (based on maintenance window)",
+              "recipients": "'BeelineQAAutomation@beeline.com','BeelineNetOps@beeline.com'",
+              "ccRecipients": "'BuildOPS@beeline.com','BeelineTechOpsAPAC@beeline.com'"
+            }
+          },
+          "extractFolder": "QARegCodeExtract",
+          "sourceZIPPath": "D:\\Code\\AzCandidate",
+          "zipName": "Warehouse.zip",
+          "zipFolder": "ZIP",
+          "backupLocation": {
+            "server": "utilsql1001.jax.beeline.com",
+            "diskDrive": "D",
+            "path": "BambooCode\\Regression"
+          }
+        }

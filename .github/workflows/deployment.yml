@@ -1,0 +1,54 @@
+name: Deployment
+
+on:
+  workflow_call:
+    inputs:
+      isHotfix:
+        description: 'Hotfix?'
+        default: False
+        type: boolean
+      githubRunner:
+        description: 'GitHub Runner'
+        default: 'windows-latest'
+        type: string
+      idealCPUPercentage:
+        description: 'Ideal CPU Percentage'
+        default: 30
+        type: number
+      environmentProperties:
+        description: 'Environment Properties'
+        type: object
+      smtpServer:
+        description: 'SMTP Server'
+        default: 'smtp.jax.beeline.com'
+        type: string
+      smcDatabase:
+        description: 'SMTP Database'
+        default: 'SMC_Prod'
+        type: string
+        
+jobs:
+  Parse-EnvironmentProperties:
+    runs-on: windows-latest
+    outputs: 
+      versionToUse: ${{ steps.parse.outputs.versionToUse }} 
+    steps:
+    - name: Checkout code 
+      uses: actions/checkout@v3
+    - name: Parse Environment Properties
+      id: parse 
+      shell: pwsh
+      run: |
+        $json = '${{ inputs.environmentProperties }}' | ConvertFrom-Json
+        Write-Output "::set-output name=versionToUse::$json.versionToUse"
+  Validate-Version:
+    needs: Parse-EnvironmentProperties
+    runs-on: windows-latest
+    if: ${{ needs.Parse-EnvironmentProperties.outputs.versionToUse != '' }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Validate
+      uses: ./.github/templates/deployment/validate/version
+      with:
+        environmentProperties: ${{ inputs.environmentProperties }}

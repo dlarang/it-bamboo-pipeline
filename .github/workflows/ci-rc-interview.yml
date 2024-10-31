@@ -1,9 +1,6 @@
 name: CI RC Interview
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch: #Allows manual trigger
 
 jobs:
