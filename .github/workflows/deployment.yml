@@ -29,7 +29,7 @@ on:
         
 jobs:
   Parse-EnvironmentProperties:
-    runs-on: windows-latest
+    runs-on: ${{ inputs.githubRunner }}
     outputs: 
       versionToUse: ${{ steps.parse.outputs.versionToUse }} 
     steps:
@@ -43,7 +43,7 @@ jobs:
         Write-Output "::set-output name=versionToUse::$json.versionToUse"
   Validate-Version:
     needs: Parse-EnvironmentProperties
-    runs-on: windows-latest
+    runs-on: ${{ inputs.githubRunner }}
     if: ${{ needs.Parse-EnvironmentProperties.outputs.versionToUse != '' }}
     steps:
     - name: Checkout

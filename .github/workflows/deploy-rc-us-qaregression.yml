@@ -4,9 +4,18 @@ on:
   workflow_dispatch: # Allows manual trigger
 
 jobs:
+  SyncCode:
+    runs-on: 'windows-latest'
+    steps:
+    - name: Sync
+      shell: pwsh
+      run: |
+        Write-Host "Syncing Code to PUSH server ...."
+
   Deploy:
     uses: ./.github/workflows/deployment.yml
     with:
+      githubRunner: 'windows-latest'
       environmentProperties: |
         {
           "versionToUse": "D:\\AzureDevOps-Store\\dynamic\\azcandidate.txt",
