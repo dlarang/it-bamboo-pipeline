@@ -1,4 +1,6 @@
 name: Test Variables
+on:
+  workflow_dispatch: # Allows manual trigger
 
 inputs:
   branchName:
