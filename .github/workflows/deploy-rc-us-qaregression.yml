@@ -13,6 +13,7 @@ jobs:
         Write-Host "Syncing Code to PUSH server ...."
 
   Deploy:
+    needs: SyncCode
     uses: ./.github/workflows/deployment.yml
     with:
       githubRunner: 'windows-latest'
