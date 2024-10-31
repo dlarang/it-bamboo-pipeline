@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Allows manual trigger
 
 jobs:
-  deploy:
+  USQARegressionDeployment:
     uses: ./.github/workflows/deployment.yml
     with:
       environmentProperties: |

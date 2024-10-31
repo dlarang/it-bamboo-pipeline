@@ -4,7 +4,7 @@ description: 'Validate Version'
 inputs:
   environmentProperties:
     description: 'Environment Properties'
-    type: object
+    type: string
 
 runs:
   using: 'composite'
