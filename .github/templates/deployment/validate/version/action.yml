@@ -20,7 +20,12 @@ runs:
     - name: Validate Version
       shell: pwsh
       run: |
+        $sourceZipPath = "${{ steps.parse.outputs.sourceZIPPath }}"
+        $extractFolder = "${{ steps.parse.outputs.extractFolder }}"
+        $artifactLocation = "$sourceZipPath\CWS.zip"
+        $extractDestination = "$sourceZipPath\$extractFolder"
+
         Write-Host "Validating Version using the needed parameters:"
-        Write-Host "ArtifactLocation: ${{ steps.parse.outputs.sourceZIPPath }}\CWS.zip"
-        Write-Host "ExtractDestination: ${{ steps.parse.outputs.sourceZIPPath }}\${{ steps.parse.outputs.extractFolder }}"
+        Write-Host "ArtifactLocation: $artifactLocation"
+        Write-Host "ExtractDestination: $extractDestination"
         Write-Host "DestinationVersion: "
