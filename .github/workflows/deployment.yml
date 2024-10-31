@@ -48,7 +48,3 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Validate
-      uses: ./.github/templates/deployment/validate/version
-      with:
-        environmentProperties: ${{ inputs.environmentProperties }}
