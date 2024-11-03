@@ -10,7 +10,7 @@ on:
         type: number
 
 jobs:
-  upgrade-job-${{ inputs.upgrade_index }}:
+  ${{ inputs.upgrade_index }}:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
