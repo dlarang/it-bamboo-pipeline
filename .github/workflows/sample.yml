@@ -16,10 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set upgrade index
-      id: set-upgrade
-      run: echo "Upgrade Index: ${{ github.event.inputs.upgrade_index }}"
-
     - name: Run upgrade-${{ github.event.inputs.upgrade_index }}
       run: |
         echo "Running upgrade-${{ github.event.inputs.upgrade_index }}"
