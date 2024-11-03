@@ -1,0 +1,25 @@
+name: Dynamic Job Example
+
+on:
+  workflow_dispatch:
+    inputs:
+      upgrade_index:
+        description: 'Upgrade Index'
+        required: true
+        default: '1'
+        type: number
+
+jobs:
+  upgrade-job-${{ inputs.upgrade_index }}:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set upgrade index
+      id: set-upgrade
+      run: echo "Upgrade Index: ${{ github.event.inputs.upgrade_index }}"
+
+    - name: Run upgrade-${{ github.event.inputs.upgrade_index }}
+      run: |
+        echo "Running upgrade-${{ github.event.inputs.upgrade_index }}"
