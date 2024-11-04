@@ -5,7 +5,6 @@ on:
     inputs:
       upgrade_index:
         description: 'Upgrade Index'
-        type: choice
         default: '1'
 
 jobs:
