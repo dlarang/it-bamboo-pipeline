@@ -5,12 +5,12 @@ on:
     inputs:
       upgrade_index:
         description: 'Upgrade Index'
-        required: true
+        type: choice
         default: '1'
-        type: number
 
 jobs:
-  ${{ github.event.inputs.upgrade_index }}:
+  notify:
+    name: Notify ${{ github.event.inputs.upgrade_index }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
