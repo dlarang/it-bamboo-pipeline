@@ -15,5 +15,5 @@ jobs:
         curl -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          https://api.github.com/repos/dlarang/it-bamboo-pipeline/actions/workflows/target-workflow.yml/dispatches \
+          https://api.github.com/repos/dlarang/it-bamboo-pipeline/.github/workflows/target-workflow.yml/dispatches \
           -d '{"ref":"main"}'
