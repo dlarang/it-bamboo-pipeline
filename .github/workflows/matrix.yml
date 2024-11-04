@@ -64,12 +64,13 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Process web server
+      shell: pwsh
       run: |
-        echo "Processing web server ${{ matrix.webServer.fqdn }}"
-        echo "Name: ${{ matrix.webServer.name }}"
-        echo "IIS Restart: ${{ matrix.webServer.iisRestart }}"
-        echo "Disk Drive: ${{ matrix.webServer.diskDrive }}"
-        echo "Folder: ${{ matrix.webServer.folder }}"
-        echo "Source Path: ${{ matrix.webServer.sourcePath }}"
-        echo "Destination Paths: ${{ matrix.webServer.destinationPaths }}"
-        echo "Services to Check: ${{ matrix.webServer.servicesToCheck }}"
+        Write-Host "Processing web server ${{ matrix.webServer.fqdn }}"
+        Write-Host "Name: ${{ matrix.webServer.name }}"
+        Write-Host "IIS Restart: ${{ matrix.webServer.iisRestart }}"
+        Write-Host "Disk Drive: ${{ matrix.webServer.diskDrive }}"
+        Write-Host "Folder: ${{ matrix.webServer.folder }}"
+        Write-Host "Source Path: ${{ matrix.webServer.sourcePath }}"
+        Write-Host "Destination Paths: ${{ matrix.webServer.destinationPaths }}"
+        Write-Host "Services to Check: ${{ matrix.webServer.servicesToCheck }}"
