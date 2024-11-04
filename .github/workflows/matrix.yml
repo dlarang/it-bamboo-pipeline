@@ -1,0 +1,75 @@
+name: Dynamic Steps from JSON Input
+
+on:
+  workflow_dispatch:
+    inputs:
+      batches:
+        description: 'Batches JSON Input'
+        required: true
+        default: |
+          [
+            {
+              "number": 1,
+              "webServers": [
+                {
+                  "fqdn": "prodweb201.fra.beeline.com",
+                  "name": "prodweb201",
+                  "iisRestart": true,
+                  "diskDrive": "D",
+                  "folder": "CWS",
+                  "sourcePath": "\\Source\\Prod\\",
+                  "destinationPaths": ["\\Source\\Prod\\"],
+                  "servicesToCheck": ["IISADMIN", "WAS", "W3SVC"]
+                },
+                {
+                  "fqdn": "prodweb203.fra.beeline.com",
+                  "name": "prodweb203",
+                  "iisRestart": true,
+                  "diskDrive": "D",
+                  "folder": "CWS",
+                  "sourcePath": "\\Source\\Prod\\",
+                  "destinationPaths": ["\\Source\\Prod\\"],
+                  "servicesToCheck": ["IISADMIN", "WAS", "W3SVC"]
+                }
+              ]
+            }
+          ]
+        type: string
+
+jobs:
+  parse-json:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Parse JSON and Generate Matrix
+      id: set-matrix
+      run: |
+        echo "Parsing JSON input..."
+        echo '${{ github.event.inputs.batches }}' > batches.json
+        webServers=$(jq -c '[.[] | .webServers[]]' batches.json)
+        echo "::set-output name=matrix::$webServers"
+
+  dynamic-steps:
+    needs: parse-json
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        webServer: ${{ fromJson(needs.parse-json.outputs.matrix) }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Process web server
+      run: |
+        echo "Processing web server ${{ matrix.webServer.fqdn }}"
+        echo "Name: ${{ matrix.webServer.name }}"
+        echo "IIS Restart: ${{ matrix.webServer.iisRestart }}"
+        echo "Disk Drive: ${{ matrix.webServer.diskDrive }}"
+        echo "Folder: ${{ matrix.webServer.folder }}"
+        echo "Source Path: ${{ matrix.webServer.sourcePath }}"
+        echo "Destination Paths: ${{ matrix.webServer.destinationPaths }}"
+        echo "Services to Check: ${{ matrix.webServer.servicesToCheck }}"
