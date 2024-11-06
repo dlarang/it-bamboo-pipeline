@@ -14,7 +14,7 @@ jobs:
     - name: Hotfix Days
       shell: pwsh
       run: |
-        Write-Output "Hotfix Days: $env:HOTFIX_DAYS"
+        Write-Output "Hotfix Days: ${{ env.HOTFIX_DAYS }}"
     - name: Release Prod Build Day
       shell: pwsh
       run: |
