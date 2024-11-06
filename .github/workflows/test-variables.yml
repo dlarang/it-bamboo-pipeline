@@ -6,6 +6,7 @@ on:
 env:
   HOTFIX_DAYS: ${{ vars.HOTFIX_DAYS }}
   RELEASE_PROD_BUILD_DAY: ${{ vars.RELEASE_PROD_BUILD_DAY }}
+  DB_SERVER_INSTANCE: 'PRODSQL1005$PRODSQL1005INST'
 
 jobs:
   Test-Variables:
@@ -19,3 +20,7 @@ jobs:
       shell: pwsh
       run: |
         Write-Output "Release Prod Build Day: $env:RELEASE_PROD_BUILD_DAY"
+    - name: DB Server Instance
+      shell: pwsh
+      run: |
+        Write-Output "Release Prod Build Day: ${{ env.DB_SERVER_INSTANCE }}"
