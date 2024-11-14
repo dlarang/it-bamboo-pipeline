@@ -2,16 +2,17 @@ name: CI Pipeline
 
 on:
   workflow_dispatch:
-  inputs:
-    isForSecurityScan:
-      description: 'Flag to indicate if this is for security scanning.'
-      type: boolean
-      required: true
-      default: false
+    inputs:
+      isForSecurityScan:
+        description: 'Flag to indicate if this is for security scanning.'
+        type: boolean
+        required: true
+        default: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
