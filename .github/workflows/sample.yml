@@ -1,5 +1,7 @@
-name: 'My Composite Action'
-description: 'An example composite action that performs different steps based on a security scan flag'
+name: CI Pipeline
+
+on: [push, pull_request]
+
 inputs:
   isForSecurityScan:
     description: 'Flag to indicate if this is for security scanning.'
@@ -7,24 +9,48 @@ inputs:
     required: true
     default: false
 
-runs:
-  using: 'composite'
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-    - name: Setup Python
-      if: ${{ !inputs.isForSecurityScan }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.8'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Run Security Scan
-      if: ${{ inputs.isForSecurityScan }}
-      run: |
-        echo "Running security scan..."
+      - name: Setup Python
+        if: ${{ !github.event.inputs.isForSecurityScan }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
 
-    - name: Run Regular Tests
-      if: ${{ !inputs.isForSecurityScan }}
-      run: |
-        echo "Running regular tests..."
+      - name: Run Security Scan
+        if: ${{ github.event.inputs.isForSecurityScan }}
+        run: |
+          echo "Running security scan..."
+
+      - name: Run Regular Tests
+        if: ${{ !github.event.inputs.isForSecurityScan }}
+        run: |
+          echo "Running regular tests..."
+
+      - name: JUnit Parse Test Output
+        if: ${{ !github.event.inputs.isForSecurityScan }}
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2
+        with:
+          check_name: JUnit Test Result
+          fail_on: test failures
+          check_run_annotations: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            **/TestResults/JUnit.xml
+
+      - name: XUnit Parse Test Output
+        if: ${{ !github.event.inputs.isForSecurityScan }}
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2
+        with:
+          check_name: XUnit Test Result
+          fail_on: test failures
+          check_run_annotations: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: | 
+            **/TestResults/xunit.results.xml
