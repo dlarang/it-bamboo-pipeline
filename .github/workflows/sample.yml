@@ -21,9 +21,9 @@ jobs:
         run: echo "isForSecurityScan is set to ${{ github.event.inputs.isForSecurityScan }}"
 
       - name: Run Security Scan
-        if: ${{ github.event.inputs.isForSecurityScan }}
+        if: ${{ inputs.isForSecurityScan }}
         run: echo "Running security scan..."
 
       - name: Run Regular Tasks
-        if: ${{ !github.event.inputs.isForSecurityScan }}
+        if: ${{ !inputs.isForSecurityScan }}
         run: echo "Running regular tasks..."
