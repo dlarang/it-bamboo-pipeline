@@ -1,20 +1,30 @@
-name: Dynamic Job Example
+name: 'My Composite Action'
+description: 'An example composite action that performs different steps based on a security scan flag'
+inputs:
+  isForSecurityScan:
+    description: 'Flag to indicate if this is for security scanning.'
+    type: boolean
+    required: true
+    default: false
 
-on:
-  workflow_dispatch:
-    inputs:
-      upgrade_index:
-        description: 'Upgrade Index'
-        default: '1'
-
-jobs:
-  notify:
-    name: Notify ${{ github.event.inputs.upgrade_index }}
-    runs-on: ubuntu-latest
-    steps:
+runs:
+  using: 'composite'
+  steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
-    - name: Run upgrade-${{ github.event.inputs.upgrade_index }}
+    - name: Setup Python
+      if: ${{ !inputs.isForSecurityScan }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.8'
+
+    - name: Run Security Scan
+      if: ${{ inputs.isForSecurityScan }}
       run: |
-        echo "Running upgrade-${{ github.event.inputs.upgrade_index }}"
+        echo "Running security scan..."
+
+    - name: Run Regular Tests
+      if: ${{ !inputs.isForSecurityScan }}
+      run: |
+        echo "Running regular tests..."
