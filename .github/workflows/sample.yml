@@ -2,55 +2,28 @@ name: CI Pipeline
 
 on: [push, pull_request]
 
-inputs:
-  isForSecurityScan:
-    description: 'Flag to indicate if this is for security scanning.'
-    type: boolean
-    required: true
-    default: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    inputs:
+      isForSecurityScan:
+        description: 'Flag to indicate if this is for security scanning.'
+        type: boolean
+        required: true
+        default: false
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Python
-        if: ${{ !github.event.inputs.isForSecurityScan }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.8'
+      - name: Check Security Scan Flag
+        run: echo "isForSecurityScan is set to ${{ github.event.inputs.isForSecurityScan }}"
 
       - name: Run Security Scan
         if: ${{ github.event.inputs.isForSecurityScan }}
-        run: |
-          echo "Running security scan..."
+        run: echo "Running security scan..."
 
-      - name: Run Regular Tests
+      - name: Run Regular Tasks
         if: ${{ !github.event.inputs.isForSecurityScan }}
-        run: |
-          echo "Running regular tests..."
-
-      - name: JUnit Parse Test Output
-        if: ${{ !github.event.inputs.isForSecurityScan }}
-        uses: EnricoMi/publish-unit-test-result-action/windows@v2
-        with:
-          check_name: JUnit Test Result
-          fail_on: test failures
-          check_run_annotations: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: |
-            **/TestResults/JUnit.xml
-
-      - name: XUnit Parse Test Output
-        if: ${{ !github.event.inputs.isForSecurityScan }}
-        uses: EnricoMi/publish-unit-test-result-action/windows@v2
-        with:
-          check_name: XUnit Test Result
-          fail_on: test failures
-          check_run_annotations: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: | 
-            **/TestResults/xunit.results.xml
+        run: echo "Running regular tasks..."
